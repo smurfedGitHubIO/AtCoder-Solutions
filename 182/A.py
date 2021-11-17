@@ -1,0 +1,1 @@
+print(2*(int(input()))+100 - int(input()))
