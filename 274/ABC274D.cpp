@@ -7,12 +7,12 @@ const ll MAXN = 1e3 + 11;
 ll A[MAXN];
 ll n;
 
-int s[501][5001];
+int s[1001][10001];
 bool checkx = 0, checky = 0;
 
 void init(){
-  for(ll i=0; i<501; i++){
-    for(ll j=0; j<5001; j++){
+  for(ll i=0; i<1001; i++){
+    for(ll j=0; j<10001; j++){
       s[i][j] = -1;
     }
   }
@@ -21,7 +21,7 @@ void init(){
 bool solve(ll t, ll i, ll cur, ll topup){
   if (cur == topup) {
     s[i][cur] = 1;
-    if (t == 0) {
+    if (t == 2) {
       checkx = 1;
     } else {
       checky = 1;
@@ -36,17 +36,19 @@ bool solve(ll t, ll i, ll cur, ll topup){
     bool a = solve(t, i+2, cur+A[i], topup), b = solve(t, i+2, cur, topup);
     if (a or b) {
       check = 1;
+    } else {
+      check = 0;
     }
-    check |= 0;
   } else if (i < n) {
     bool b = solve(t, i+2, cur, topup);
     if (cur + A[i] <= topup) {
       bool a = solve(t, i+2, cur+A[i], topup);
-      if (a == topup) {
+      if (a) {
         check = 1;
       }
+    } else {
+      check |= b;
     }
-    check |= b;
   }
   s[i][cur] = check;
   return check;
@@ -66,9 +68,9 @@ int main(){
     }
   }
   x -= A[0];
-  bool yb = solve(1, 1, 0, evens-abs(y));
+  bool yb = solve(1, 1, 0, (evens-abs(y))>>1);
   init();
-  bool xb = solve(0, 0, 0, odds-abs(x));
+  bool xb = solve(2, 2, 0, (odds-abs(x))>>1);
   cout << (checkx&checky ? "Yes" : "No");
   return 0;
 }
