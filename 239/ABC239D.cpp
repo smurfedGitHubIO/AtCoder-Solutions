@@ -24,12 +24,12 @@ int main(){
         q ++;
       }
     }
-    if(p >= q){
+    if(p > 0){
       aoki += 1;
     } else {
       takahashi += 1;
     }
   }
-  cout << (aoki >= takahashi ? "Aoki" : "Takahashi");
+  cout << (aoki > takahashi and takahashi == 0 ? "Aoki" : "Takahashi");
   return 0;
 }
