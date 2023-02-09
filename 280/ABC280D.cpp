@@ -27,7 +27,7 @@ int main(){
     ll i =0;
     ll p = x.second;
     while(p > 0){
-      p -= (i%x.first == 0 ? max(i/x.first, 0)+1 : 1);
+      p -= (i%x.first == 0 ? max(i/x.first, 0LL)+1 : 1);
       i += 1;
     }
     mx = max(i*x.first, mx);
