@@ -7,7 +7,7 @@ int main(){
     string s;
     cin >> s;
     for(ll i=0; i<16; i++){
-        if(s[i]&1 and s[i] == '1'){
+        if(i&1 and s[i] == '1'){
             cout << "No";
             return 0;
         }
